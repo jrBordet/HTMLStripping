@@ -21,6 +21,16 @@ class HTMLStrippingTutorialTests: XCTestCase {
         super.tearDown()
     }
     
+    func test_stripping_tags() {
+        let html = "<p>This is a paragraph</p><h1>My heading 1<h1><iframe src=\"https://www.youtube.com/embed/7PTkwZ1p0DI\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>"
+        
+        let result = html.strippingHTML(of: ["iframe","p"])
+        
+        let expected = "<h1>My heading 1<h1>"
+        
+        XCTAssertEqual(result, expected)
+    }
+    
     func test_stripping_iframe() {
         let html = "<iframe src=\"https://www.youtube.com/embed/7PTkwZ1p0DI\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>"
         
